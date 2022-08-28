@@ -17,7 +17,7 @@ while choicenter == 'y':
     print("1.ORIGINAL PRODUCIONS")
     print("2.LICENSED CONTENT")
     print("3.CONTENT PURCHASED")
-    ch=int(input("ENTER YOU CHOICE"))
+    ch=int(input("ENTER YOU CHOICE:"))
     if ch ==1:
         print("WELCOME TO ORIGINAL PRODUCTIONS")
         choice1=int(input('''
