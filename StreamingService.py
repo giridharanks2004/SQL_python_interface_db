@@ -358,5 +358,5 @@ while choicenter == 'y':
            print("acsess denied!!!!")
     choicenter=input("do you want to restart the server [y?]:").lower()
 
-print("*****************HBO MAX A WARNERMEDIA COMPANY******************")
+print("*****************HBO MAX A WARNERMEDIA COMPANY ltd******************")
 
