@@ -12,7 +12,7 @@ while cur.is_connected:
     break
 choicenter='y'
 while choicenter == 'y':
-    print("----------WELCOME TO HBOMAX STREAMDATABASE LINK by harishiv-----------")
+    print("----------WELCOME TO HBOMAX STREAMDATABASE LINK-----------")
     print("**********a WARNERMEDIA company************")
     print("1.ORIGINAL PRODUCIONS")
     print("2.LICENSED CONTENT")
