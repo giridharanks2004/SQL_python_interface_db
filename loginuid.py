@@ -1,4 +1,5 @@
 from sqlite3 import Cursor
+from tabnanny import check
 import mysql.connector as m
 curs=m.connect(host="localhost",user='root',passwd="3000")
 cursor=curs.cursor()
@@ -6,4 +7,26 @@ while curs.is_connected:
     cursor.execute("create database vodpass")
     cursor.execute("use vodpass;")
     cursor.execute("create table userinfo(uid varchar(10),paswd varchar(10));")
-    
+    curs.commit()
+    break
+cho="y"
+while cho=='y':
+    print ("-----Login/Create User STREAM-DATABASE HBO MAX---------")
+    print("1.LOGIN")
+    print("2.CREATE USER ID")
+    ch1=int(input("enter your choice to proceed:"))
+    while ch1==1:
+        inp1=input("enter you user id:")
+        cursor.execute('select * from userinfo;')
+        check=cursor.fetchall()
+        for i in check:
+            if inp1==i[0]:
+                print("user id found")
+                inp2=input("enter your password:")
+                if inp2==i[1]:
+                    print('login sucessfull!')
+                else:
+                    print('enter correct pwd!')
+            else:
+                print('user info not found')
+            
