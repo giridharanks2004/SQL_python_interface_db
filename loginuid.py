@@ -28,7 +28,7 @@ while cho=='y':
                 else:
                     print('enter correct pwd!')
             else:
-                print('user info not found')
+                print('user info found')
     elif ch1==2:
         inpun=input('enter valid user name:')
         inpwd=input("enter valid password:")
