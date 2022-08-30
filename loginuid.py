@@ -10,8 +10,8 @@ while curs.is_connected:
     curs.commit()
     break
 cho="y"
-while cho=='y':
-    print ("-----Login/Create User STREAM-DATABASE HBO MAX---------")
+while cho=='y': 
+    print ("-----LOGIN/CREATE USER STREAM-DATABASE HBO MAX---------")
     print("1.LOGIN")
     print("2.CREATE USER ID")
     ch1=int(input("enter your choice to proceed:"))
@@ -39,9 +39,3 @@ while cho=='y':
         else:
             print("enter proper uid and password to sign up!")
     cho=input('do you want sign in again? y/n:')
-    
-            
-        
-        
-                
-            
