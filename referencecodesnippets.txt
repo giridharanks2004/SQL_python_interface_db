@@ -1,0 +1,15 @@
+  ''''residual code from loginuid.py for reference'''
+                 '''else:
+                    print('enter correct pwd!')
+            else:
+                print('user info not found')
+    elif ch1==2:
+        inpun=input('enter valid user name:')
+        inpwd=input("enter valid password:")
+        if isinstance(inpun,str):
+            cursor2.execute("insert into userinfo values('{}','{}');".format(inpun,inpwd))
+            curs2.commit()
+            print('the user info has been added sign in to continue')
+        else:
+            print("enter proper uid and password to sign up!")
+    cho2=input('do you want sign in again? y/n:')'''
