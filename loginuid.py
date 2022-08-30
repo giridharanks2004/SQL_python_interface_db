@@ -1,6 +1,11 @@
+from random import randint
 from sqlite3 import Cursor
+from sys import implementation
 from tabnanny import check
+import time
+import sys
 import mysql.connector as m
+done = 'false'
 curs=m.connect(host="localhost",user='root',passwd="3000")
 cursor=curs.cursor()
 while curs.is_connected:
@@ -24,11 +29,15 @@ while cho=='y':
                 print("user id found")
                 inp2=input("enter your password:")
                 if inp2==i[1]:
-                    print('login sucessfull!')
+                    capt=randint(100001,999998)
+                    print('enter the captcha for human verification',capt)
+                    captch=int(input('verify:'))
+                    if capt==captch:
+                        print('login succesful')
+                    else:
+                        print('human verification failed!')
                 else:
                     print('enter correct pwd!')
-            else:
-                print('user info not found')
     elif ch1==2:
         inpun=input('enter valid user name:')
         inpwd=input("enter valid password:")
