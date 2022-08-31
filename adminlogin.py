@@ -34,6 +34,15 @@ while cho2=='y':
                         uinfo=cursor2.fetchall()
                         for i in uinfo:
                             print(i, 'user currently logged in!')
+                    elif cho3==2:
+                        print('database user search portal')
+                        search=input('enter user name:')
+                        cursor2.execute("use vodpass;")
+                        cursor2.execute("select * from userinfo;")
+                        dat=cursor2.fetchall()
+                        for i in dat:
+                            if search==i[0]:
+                                print("NAME=",i[0],"PASSWORD=",i[1])
     cho2=input('do you want to exit the portal:')
     break
                         
