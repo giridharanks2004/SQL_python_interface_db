@@ -4,6 +4,7 @@ from random import randint
 from sqlite3 import Cursor
 from sys import implementation
 from tabnanny import check
+from turtle import goto
 import mysql.connector as m
 curs=m.connect(host="localhost",user='root',passwd="3000")
 cursor=curs.cursor()
@@ -48,16 +49,30 @@ while cho=='y':
                           for i in user_info:
                               print('name:',i[0])
                               print('password:',i[1])
-                              break
                        else:
                           print('human verification failed!')
                           break
     elif ch1==2:
         inpun=input('enter valid user name:')
-        inpwd=input("enter valid password:")
-        inpmail=input('enter mail id to register:')
-        cursor.execute("use vodpass;")
-        cursor.execute("insert into userinfo values('{}','{}','{}');".format(inpun,inpwd,inpmail))
-        curs.commit()
-        print('the user info has been added sign in to continue')
+        cursor.execute('select * from userinfo;')
+        checknameavial=cursor.fetchall()
+        for i in checknameavial:
+            if inpun==i[0]:
+                print('enter unique username!!!')
+                inpun=input('enter unique user name:')
+                if inpun!=i[0]:
+                    inpwd=input("enter valid password:")
+                    if inpwd==i[1]:
+                        print('enter unique password')
+                        inpwd=input("enter valid password:")
+                        if inpwd!=i[1]:
+                            inpmail=input('enter mail id to register:')
+                            if inpmail==i[3]:
+                                print('enter unique email id!')
+                                inpmail=input('enter mail id to register:')
+                                if inpmail!=i[3]:
+                                    cursor.execute("use vodpass;")
+                                    cursor.execute("insert into userinfo values('{}','{}','{}');".format(inpun,inpwd,inpmail))
+                                    curs.commit()
+                                    print('the user info has been added sign in to continue')
     cho=input('do you want sign in again? y/n:')
