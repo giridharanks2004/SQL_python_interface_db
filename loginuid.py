@@ -1,21 +1,20 @@
+from http import server
+from lib2to3.pygram import Symbols
 from random import randint
 from sqlite3 import Cursor
 from sys import implementation
 from tabnanny import check
-import time
-import sys
 import mysql.connector as m
-done = 'false'
 curs=m.connect(host="localhost",user='root',passwd="3000")
 cursor=curs.cursor()
 while curs.is_connected:
     #cursor.execute("create database vodpass")
     cursor.execute("use vodpass;")
-    #cursor.execute("create table userinfo(uid varchar(10),paswd varchar(10));")
+    #cursor.execute("create table userinfo(uid varchar(10),paswd varchar(10));")  
     curs.commit()
     break
-cho="y"
-while cho=='y': 
+cho="y" 
+while cho=='y':
     print ("-----LOGIN/CREATE USER STREAM-DATABASE HBO MAX---------")
     print("1.LOGIN")
     print("2.CREATE USER ID")
@@ -28,23 +27,37 @@ while cho=='y':
             if inp1==i[0]:
                 print("user id found")
                 inp2=input("enter your password:")
-                if inp2==i[1]:
-                    capt=randint(100001,999998)
-                    print('enter the captcha for human verification',capt)
-                    captch=int(input('verify:'))
-                    if capt==captch:
-                        print('login succesful')
-                    else:
-                        print('human verification failed!')
-                else:
-                    print('enter correct pwd!')
+                cursor.execute('select * from userinfo;')
+                check2=cursor.fetchall()
+                for i in check2:
+                    if inp2==i[1]:
+                       import random
+                       alphalower='abcdefghijklmnopqrstxyz'
+                       alphaupper='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                       numer='0123456789'
+                       symbols='<>?:!@#$%^&*()'
+                       capt_size=6
+                       captcha=alphalower+alphaupper+numer+symbols
+                       passwd="".join(random.sample(captcha,capt_size))
+                       print('captcha=',passwd)
+                       captch=input('enter captcha:')
+                       if passwd==captch:
+                          print('login succesful')
+                          cursor.execute("select * from userinfo where uid='{}';".format(inp1))
+                          user_info=cursor.fetchall()
+                          for i in user_info:
+                              print('name:',i[0])
+                              print('password:',i[1])
+                              break
+                       else:
+                          print('human verification failed!')
+                          break
     elif ch1==2:
         inpun=input('enter valid user name:')
         inpwd=input("enter valid password:")
-        if isinstance(inpun,str):
-            cursor.execute("insert into userinfo values('{}','{}');".format(inpun,inpwd))
-            curs.commit()
-            print('the user info has been added sign in to continue')
-        else:
-            print("enter proper uid and password to sign up!")
+        inpmail=input('enter mail id to register:')
+        cursor.execute("use vodpass;")
+        cursor.execute("insert into userinfo values('{}','{}','{}');".format(inpun,inpwd,inpmail))
+        curs.commit()
+        print('the user info has been added sign in to continue')
     cho=input('do you want sign in again? y/n:')
